@@ -1,0 +1,543 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <meta name="theme-color" content="#0a0b14" />
+    <meta
+      name="description"
+      content="Body Calculator — tính BMI, tỷ lệ mỡ cơ thể và TDEE."
+    />
+    <title>Forma — Body Calculator</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <div class="ambient ambient-one"></div>
+    <div class="ambient ambient-two"></div>
+    <main class="app-shell">
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="Forma trang chủ"
+          ><span class="brand-mark">F</span
+          ><span
+            >forma<span class="brand-dot">.</span
+            ><small>BODY INTELLIGENCE</small></span
+          ></a
+        >
+        <div class="top-actions">
+          <span class="live-dot"></span
+          ><span class="top-label">PERSONAL HEALTH DASHBOARD</span
+          ><button
+            class="icon-btn"
+            id="resetBtn"
+            type="button"
+            title="Xóa dữ liệu"
+            aria-label="Xóa dữ liệu"
+          >
+            ↺
+          </button>
+        </div>
+      </header>
+
+      <section class="hero">
+        <div class="hero-copy">
+          <div class="eyebrow">
+            <span class="eyebrow-line"></span> YOUR BODY, DECODED
+          </div>
+          <h1>Hiểu cơ thể.<br /><span>Tối ưu mỗi ngày.</span></h1>
+          <p>
+            Tính toán các chỉ số cơ thể trong một không gian rõ ràng, trực quan
+            và dành riêng cho bạn.
+          </p>
+          <div class="hero-chips">
+            <span>✦ BMI & Body Fat</span><span>◈ TDEE & Calories</span
+            ><span>⌁ Theo dõi mục tiêu</span>
+          </div>
+        </div>
+        <div class="hero-art" aria-hidden="true">
+          <div class="orb orb-a"></div>
+          <div class="orb orb-b"></div>
+          <div class="orbit orbit-a"></div>
+          <div class="orbit orbit-b"></div>
+          <div class="art-core">
+            <span>F</span><small>FORM / FUNCTION</small>
+          </div>
+          <div class="float-tag tag-top">
+            <span class="tag-icon">↗</span
+            ><span><small>BODY METRICS</small><b>Made personal</b></span>
+          </div>
+          <div class="float-tag tag-bottom">
+            <span class="mini-bars"><i></i><i></i><i></i><i></i></span
+            ><span><small>YOUR JOURNEY</small><b>One step at a time</b></span>
+          </div>
+        </div>
+      </section>
+
+      <nav class="tabs" aria-label="Các công cụ">
+        <button class="tab active" data-tab="overview" type="button">
+          <span>◫</span> Tổng quan
+        </button>
+        <button class="tab" data-tab="body" type="button">
+          <span>◉</span> Chỉ số cơ thể
+        </button>
+        <button class="tab" data-tab="energy" type="button">
+          <span>ϟ</span> Năng lượng
+        </button>
+      </nav>
+
+      <div class="dashboard-grid">
+        <aside class="panel input-panel">
+          <div class="panel-heading">
+            <div>
+              <div class="eyebrow">01 / YOUR PROFILE</div>
+              <h2>Thông tin cơ bản</h2>
+            </div>
+            <span class="step-badge">01</span>
+          </div>
+          <p class="muted">Nhập thông tin để cá nhân hóa kết quả.</p>
+
+          <div class="field-label">
+            Giới tính sinh học
+            <span
+              class="help"
+              title="Một số công thức sử dụng hệ số khác nhau theo giới tính."
+              >i</span
+            >
+          </div>
+          <div class="segmented" role="radiogroup" aria-label="Giới tính">
+            <label
+              ><input type="radio" name="sex" value="m" checked /><span
+                >♂ Nam</span
+              ></label
+            >
+            <label
+              ><input type="radio" name="sex" value="f" /><span
+                >♀ Nữ</span
+              ></label
+            >
+          </div>
+          <div class="field-label unit-label">Hệ đơn vị</div>
+          <div
+            class="segmented unit-segment"
+            role="radiogroup"
+            aria-label="Hệ đơn vị"
+          >
+            <label
+              ><input type="radio" name="unit" value="metric" checked /><span
+                >cm · kg</span
+              ></label
+            >
+            <label
+              ><input type="radio" name="unit" value="imp" /><span
+                >in · lb</span
+              ></label
+            >
+          </div>
+
+          <div class="form-grid">
+            <label class="field"
+              >Tuổi <span class="field-unit">năm</span
+              ><input
+                id="age"
+                type="number"
+                min="1"
+                max="110"
+                step="1"
+                placeholder="18"
+                inputmode="numeric"
+            /></label>
+            <label class="field"
+              >Chiều cao <span class="field-unit uL">cm</span
+              ><input
+                id="h"
+                type="number"
+                min="50"
+                max="250"
+                step="0.1"
+                placeholder="173"
+                inputmode="decimal"
+            /></label>
+            <label class="field full-field"
+              >Cân nặng <span class="field-unit uW">kg</span
+              ><input
+                id="w"
+                type="number"
+                min="10"
+                max="400"
+                step="0.1"
+                placeholder="68"
+                inputmode="decimal"
+            /></label>
+          </div>
+          <div class="field-label goal-label">Mục tiêu của bạn</div>
+          <div class="goal-options">
+            <label
+              ><input type="radio" name="goal" value="maintain" checked /><span
+                ><b>↔</b> Duy trì</span
+              ></label
+            >
+            <label
+              ><input type="radio" name="goal" value="lose" /><span
+                ><b>↘</b> Giảm mỡ</span
+              ></label
+            >
+            <label
+              ><input type="radio" name="goal" value="gain" /><span
+                ><b>↗</b> Tăng cân</span
+              ></label
+            >
+          </div>
+          <button class="primary-btn" id="calculateBtn" type="button">
+            Tính chỉ số của tôi <span>↗</span>
+          </button>
+          <p class="privacy-note">
+            <span>◆</span> Dữ liệu được xử lý ngay trên trình duyệt của bạn.
+          </p>
+        </aside>
+
+        <section class="main-column">
+          <div class="section-view active" id="view-overview">
+            <div class="panel-heading result-heading">
+              <div>
+                <div class="eyebrow">02 / YOUR SNAPSHOT</div>
+                <h2>Tổng quan cơ thể</h2>
+              </div>
+              <span class="result-status"><i></i> SẴN SÀNG</span>
+            </div>
+            <div class="metric-grid">
+              <article class="metric-card accent-purple">
+                <div class="metric-top">
+                  <span>BMI</span><span class="metric-icon">◉</span>
+                </div>
+                <div class="metric-value" id="bmiValue">—</div>
+                <div class="metric-foot">
+                  <span id="bmiStatus">Chờ dữ liệu</span
+                  ><span class="metric-arrow">↗</span>
+                </div>
+                <div class="mini-track"><i id="bmiTrack"></i></div>
+              </article>
+              <article class="metric-card accent-cyan">
+                <div class="metric-top">
+                  <span>BODY FAT</span><span class="metric-icon">◌</span>
+                </div>
+                <div class="metric-value">
+                  <span id="bfValue">—</span><small>%</small>
+                </div>
+                <div class="metric-foot">
+                  <span id="bfStatus">Cần số đo</span
+                  ><span class="metric-arrow">↗</span>
+                </div>
+                <div class="mini-track"><i id="bfTrack"></i></div>
+              </article>
+              <article class="metric-card accent-orange">
+                <div class="metric-top">
+                  <span>TDEE</span><span class="metric-icon">ϟ</span>
+                </div>
+                <div class="metric-value">
+                  <span id="tdeeValue">—</span><small>kcal</small>
+                </div>
+                <div class="metric-foot">
+                  <span>Năng lượng/ngày</span
+                  ><span class="metric-arrow">↗</span>
+                </div>
+                <div class="mini-track"><i id="tdeeTrack"></i></div>
+              </article>
+            </div>
+            <div class="panel bmi-panel">
+              <div class="panel-heading">
+                <div>
+                  <div class="eyebrow">BODY MASS INDEX</div>
+                  <h3>Vị trí BMI của bạn</h3>
+                </div>
+                <span class="pill">Chỉ số tham khảo</span>
+              </div>
+              <div class="bmi-scale-wrap">
+                <div class="bmi-number">
+                  <strong id="bmiLarge">—</strong
+                  ><span id="bmiCategory">Nhập dữ liệu để bắt đầu</span>
+                </div>
+                <div class="scale">
+                  <div class="scale-col under"></div>
+                  <div class="scale-col normal"></div>
+                  <div class="scale-col over"></div>
+                  <div class="scale-col obese"></div>
+                  <div class="scale-marker" id="bmiMarker"></div>
+                </div>
+                <div class="scale-labels">
+                  <span>Thiếu cân<br /><b>&lt;18,5</b></span
+                  ><span>Bình thường<br /><b>18,5–22,9*</b></span
+                  ><span>Thừa cân<br /><b>23–24,9*</b></span
+                  ><span>Béo phì<br /><b>≥25*</b></span>
+                </div>
+                <p class="tiny-note">
+                  * Ngưỡng châu Á–Thái Bình Dương. Theo WHO quốc tế, thừa cân
+                  bắt đầu từ BMI 25 và béo phì từ 30.
+                </p>
+              </div>
+            </div>
+            <div class="two-cards">
+              <article class="panel insight-card">
+                <div class="panel-heading">
+                  <div>
+                    <div class="eyebrow">BODY COMPOSITION</div>
+                    <h3>Thành phần cơ thể</h3>
+                  </div>
+                  <span class="metric-icon">◌</span>
+                </div>
+                <div class="composition">
+                  <div class="donut" id="compositionDonut">
+                    <div><b id="leanPct">—</b><small>khối nạc</small></div>
+                  </div>
+                  <div class="composition-legend">
+                    <div>
+                      <i class="legend-dot fat-dot"></i><span>Mỡ cơ thể</span
+                      ><b id="fatKg">—</b>
+                    </div>
+                    <div>
+                      <i class="legend-dot lean-dot"></i
+                      ><span>Khối nạc ước tính</span><b id="leanKg">—</b>
+                    </div>
+                    <p>Chỉ hiển thị khi có ước tính % mỡ.</p>
+                  </div>
+                </div>
+              </article>
+              <article class="panel insight-card">
+                <div class="panel-heading">
+                  <div>
+                    <div class="eyebrow">YOUR NEXT STEP</div>
+                    <h3>Gợi ý hôm nay</h3>
+                  </div>
+                  <span class="metric-icon">✦</span>
+                </div>
+                <div class="tip-content">
+                  <div class="tip-icon">✧</div>
+                  <div>
+                    <b id="tipTitle">Bắt đầu từ dữ liệu</b>
+                    <p id="tipText">
+                      Nhập chiều cao, cân nặng và tuổi để nhận gợi ý phù hợp
+                      hơn.
+                    </p>
+                  </div>
+                </div>
+                <div class="tip-bottom">Nhất quán quan trọng hơn hoàn hảo.</div>
+              </article>
+            </div>
+          </div>
+
+          <div class="section-view" id="view-body">
+            <div class="panel-heading">
+              <div>
+                <div class="eyebrow">03 / BODY COMPOSITION</div>
+                <h2>Phân tích tỷ lệ mỡ</h2>
+              </div>
+            </div>
+            <p class="muted view-intro">
+              Điền số đo bạn có. Mỗi phương pháp hoạt động độc lập; hãy đo đúng
+              hướng dẫn để kết quả hữu ích hơn.
+            </p>
+            <div class="panel method-card">
+              <div class="method-title">
+                <div class="method-icon purple">⌁</div>
+                <div>
+                  <h3>US Navy</h3>
+                  <p>Ước tính từ vòng cổ, eo và chiều cao.</p>
+                </div>
+                <span class="method-result" id="r-navy">—</span>
+              </div>
+              <div class="form-grid three-col">
+                <label class="field"
+                  >Vòng cổ <span class="field-unit uL">cm</span
+                  ><input
+                    id="neck"
+                    type="number"
+                    min="10"
+                    step="0.1"
+                    placeholder="—" /></label
+                ><label class="field"
+                  >Vòng eo <span class="field-unit uL">cm</span
+                  ><input
+                    id="waist"
+                    type="number"
+                    min="30"
+                    step="0.1"
+                    placeholder="—" /></label
+                ><label class="field" id="hipWrap" hidden
+                  >Vòng mông <span class="field-unit uL">cm</span
+                  ><input
+                    id="hip"
+                    type="number"
+                    min="40"
+                    step="0.1"
+                    placeholder="—"
+                /></label>
+              </div>
+              <p class="tiny-note">
+                Đo cổ ngay dưới thanh quản. Nam đo eo ngang rốn; nữ đo eo ở vùng
+                nhỏ nhất và thêm vòng mông lớn nhất.
+              </p>
+            </div>
+            <div class="panel method-card">
+              <div class="method-title">
+                <div class="method-icon cyan">◈</div>
+                <div>
+                  <h3>Kẹp da 3 điểm</h3>
+                  <p>Jackson–Pollock · cần thước kẹp da, đơn vị mm.</p>
+                </div>
+                <span class="method-result" id="r-jp">—</span>
+              </div>
+              <div class="form-grid three-col">
+                <label class="field"
+                  ><span id="sl1">Ngực</span> <span class="field-unit">mm</span
+                  ><input
+                    id="sf1"
+                    type="number"
+                    min="1"
+                    step="0.5"
+                    placeholder="—" /></label
+                ><label class="field"
+                  ><span id="sl2">Bụng</span> <span class="field-unit">mm</span
+                  ><input
+                    id="sf2"
+                    type="number"
+                    min="1"
+                    step="0.5"
+                    placeholder="—" /></label
+                ><label class="field"
+                  ><span id="sl3">Đùi</span> <span class="field-unit">mm</span
+                  ><input
+                    id="sf3"
+                    type="number"
+                    min="1"
+                    step="0.5"
+                    placeholder="—"
+                /></label>
+              </div>
+              <p class="tiny-note">
+                Nam: ngực, bụng, đùi. Nữ: cơ tam đầu, mào chậu, đùi. Kết quả có
+                thể sai lệch nếu kỹ thuật đo không chuẩn.
+              </p>
+            </div>
+            <div class="panel compare-panel">
+              <div class="panel-heading">
+                <div>
+                  <div class="eyebrow">METHOD COMPARISON</div>
+                  <h3>So sánh kết quả</h3>
+                </div>
+              </div>
+              <div id="comparison">
+                <p class="muted">
+                  Nhập số đo của một hoặc nhiều phương pháp để so sánh.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-view" id="view-energy">
+            <div class="panel-heading">
+              <div>
+                <div class="eyebrow">04 / ENERGY BALANCE</div>
+                <h2>Năng lượng mỗi ngày</h2>
+              </div>
+            </div>
+            <p class="muted view-intro">
+              Ước tính năng lượng cơ thể cần dùng để duy trì hoạt động thường
+              ngày.
+            </p>
+            <div class="panel energy-panel">
+              <div class="energy-top">
+                <div>
+                  <span class="eyebrow">ESTIMATED DAILY ENERGY</span>
+                  <div class="energy-number">
+                    <span id="tdeeLarge">—</span><small>kcal/ngày</small>
+                  </div>
+                  <p class="muted">TDEE = BMR × hệ số hoạt động</p>
+                </div>
+                <div class="energy-orb">ϟ</div>
+              </div>
+              <div class="energy-divider"></div>
+              <div class="form-grid">
+                <label class="field"
+                  >Mức vận động<select id="act">
+                    <option value="1.2">Ít vận động · chủ yếu ngồi</option>
+                    <option value="1.375" selected>
+                      Nhẹ · tập 1–3 buổi/tuần
+                    </option>
+                    <option value="1.55">Vừa · tập 3–5 buổi/tuần</option>
+                    <option value="1.725">Nhiều · tập 6–7 buổi/tuần</option>
+                    <option value="1.9">Rất nhiều · lao động/tập nặng</option>
+                  </select></label
+                ><label class="field"
+                  >Công thức BMR<select id="bmrf">
+                    <option value="mifflin">Mifflin–St Jeor</option>
+                    <option value="harris">Harris–Benedict sửa đổi</option>
+                    <option value="katch">Katch–McArdle · cần % mỡ</option>
+                  </select></label
+                >
+              </div>
+              <div class="energy-results">
+                <div>
+                  <span>BMR · năng lượng khi nghỉ</span
+                  ><b id="bmrValue">— <small>kcal</small></b>
+                </div>
+                <div>
+                  <span>Mục tiêu calo tham khảo</span
+                  ><b id="goalCalories">— <small>kcal</small></b>
+                </div>
+              </div>
+            </div>
+            <div class="panel calorie-panel">
+              <div class="panel-heading">
+                <div>
+                  <div class="eyebrow">CALORIE BREAKDOWN</div>
+                  <h3>Phân bổ dinh dưỡng gợi ý</h3>
+                </div>
+              </div>
+              <p class="muted">
+                Tỷ lệ minh họa 25% protein · 45% carbohydrate · 30% chất béo,
+                không phải đơn thuốc dinh dưỡng.
+              </p>
+              <div class="macro-bar"><i></i><i></i><i></i></div>
+              <div class="macro-grid">
+                <div>
+                  <span class="macro-dot protein"></span><span>Protein</span
+                  ><b id="proteinG">— g</b><small>25% năng lượng</small>
+                </div>
+                <div>
+                  <span class="macro-dot carbs"></span><span>Carb</span
+                  ><b id="carbG">— g</b><small>45% năng lượng</small>
+                </div>
+                <div>
+                  <span class="macro-dot fats"></span><span>Chất béo</span
+                  ><b id="fatG">— g</b><small>30% năng lượng</small>
+                </div>
+              </div>
+            </div>
+            <p class="disclaimer">
+              Các con số là ước tính, không thay thế tư vấn y tế. BMI và công
+              thức % mỡ có giới hạn, đặc biệt với người đang phát triển, vận
+              động viên hoặc người có nhiều khối cơ. Tránh dùng mục tiêu calo
+              quá thấp; hãy ưu tiên ăn đủ chất và điều chỉnh dựa trên tiến triển
+              thực tế.
+            </p>
+          </div>
+        </section>
+      </div>
+      <footer>
+        <a class="brand footer-brand" href="#"
+          ><span class="brand-mark">F</span
+          ><span>forma<span class="brand-dot">.</span></span></a
+        ><span>Built for better understanding.</span><span>© 2026 FORMA</span>
+      </footer>
+    </main>
+    <div class="toast" id="toast" role="status" aria-live="polite"></div>
+    <script src="app.js"></script>
+  </body>
+</html>
