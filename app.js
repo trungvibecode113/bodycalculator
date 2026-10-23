@@ -359,7 +359,7 @@
   all("input,select").forEach((el) =>
     el.addEventListener("input", () => updateResults(false)),
   );
-  $("calculateBtn").addEventListener("click", () => updateResults(true));
+ 
   $("resetBtn").addEventListener("click", resetAll);
   all(".tab").forEach((tab) =>
     tab.addEventListener("click", () => {
