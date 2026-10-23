@@ -480,6 +480,46 @@
                   </select></label
                 >
               </div>
+              <section class="katch-source-panel" id="katchBfPanel" hidden aria-labelledby="katchSourceTitle">
+                <div class="katch-source-heading">
+                  <div>
+                    <h3 id="katchSourceTitle">Nguồn dữ liệu % body fat</h3>
+                    <p class="muted">US Navy và Kẹp mỡ 3 điểm dùng lại số đo ở tab <strong>Chỉ số cơ thể</strong>; không cần nhập lại.</p>
+                  </div>
+                </div>
+                <div class="bf-source-options" role="radiogroup" aria-label="Nguồn body fat">
+                  <label class="bf-source-option active">
+                    <input type="radio" name="bfSource" value="navy" checked />
+                    <span class="bf-source-radio" aria-hidden="true"></span>
+                    <span class="bf-source-copy"><strong>US Navy</strong><small>Dùng vòng cổ, eo và mông đã nhập</small></span>
+                  </label>
+                  <label class="bf-source-option">
+                    <input type="radio" name="bfSource" value="jp" />
+                    <span class="bf-source-radio" aria-hidden="true"></span>
+                    <span class="bf-source-copy"><strong>Kẹp mỡ 3 điểm</strong><small>Dùng 3 số đo nếp gấp da đã nhập</small></span>
+                  </label>
+                  <label class="bf-source-option">
+                    <input type="radio" name="bfSource" value="manual" />
+                    <span class="bf-source-radio" aria-hidden="true"></span>
+                    <span class="bf-source-copy"><strong>Tự nhập % mỡ</strong><small>Nhập kết quả bạn đã biết</small></span>
+                  </label>
+                </div>
+                <div class="manual-bf-wrap" id="manualBfWrap" hidden>
+                  <label class="field" for="manualBf">Body fat (%) <span class="field-unit">%</span>
+                    <input id="manualBf" type="number" min="2" max="70" step="0.1" placeholder="Ví dụ: 18" inputmode="decimal" />
+                  </label>
+                </div>
+                <div class="selected-bf-result">
+                  <div class="selected-bf-main">
+                    <span class="muted" id="selectedBfLabel">Body fat · US Navy</span>
+                    <strong id="selectedBfValue">—</strong>
+                  </div>
+                  <div class="selected-bf-status">
+                    <span class="bf-status-dot" aria-hidden="true"></span>
+                    <div><strong id="selectedBfStatus">Chưa có đủ số đo</strong><small id="selectedBfDetails">Nhập số đo ở tab Chỉ số cơ thể để tính.</small></div>
+                  </div>
+                </div>
+              </section>
               <div class="energy-results">
                 <div>
                   <span>BMR · năng lượng khi nghỉ</span
