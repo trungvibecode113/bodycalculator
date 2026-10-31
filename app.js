@@ -108,7 +108,8 @@
     };
   }
   function getKatchBF(p, bfs) {
-    const source = document.querySelector('input[name="bfSource"]:checked')?.value || "navy";
+    const source =
+      document.querySelector('input[name="bfSource"]:checked')?.value || "navy";
     if (source === "navy") return bfs.navy;
     if (source === "jp") return bfs.jp;
     const manual = num("manualBf");
@@ -167,13 +168,22 @@
   function updateKatchSourceUI() {
     const isKatch = $("bmrf").value === "katch";
     $("katchBfPanel").hidden = !isKatch;
-    const source = document.querySelector('input[name="bfSource"]:checked')?.value || "navy";
+    const source =
+      document.querySelector('input[name="bfSource"]:checked')?.value || "navy";
     $("manualBfWrap").hidden = source !== "manual";
     all(".bf-source-option").forEach((card) => {
       const radio = card.querySelector('input[name="bfSource"]');
       card.classList.toggle("active", Boolean(radio && radio.checked));
     });
-    setText("selectedBfLabel", "Body fat · " + (source === "navy" ? "US Navy" : source === "jp" ? "Kẹp mỡ 3 điểm" : "Tự nhập"));
+    setText(
+      "selectedBfLabel",
+      "Body fat · " +
+        (source === "navy"
+          ? "US Navy"
+          : source === "jp"
+            ? "Kẹp mỡ 3 điểm"
+            : "Tự nhập"),
+    );
   }
   function updateResults(showErrors = false) {
     updateKatchSourceUI();
@@ -222,33 +232,58 @@
       bfs = getBF(p),
       formula = $("bmrf").value,
       selectedBF = formula === "katch" ? getKatchBF(p, bfs) : null;
-    const bf = formula === "katch"
-        ? (typeof selectedBF === "number" ? selectedBF : null)
-        : bfs.bf,
+    const bf =
+        formula === "katch"
+          ? typeof selectedBF === "number"
+            ? selectedBF
+            : null
+          : bfs.bf,
       bmr = bmrCalc(p, bf),
       tdee = bmr === null ? null : bmr * Number($("act").value);
 
     if (formula === "katch") {
-      setText("selectedBfValue", typeof selectedBF === "number" ? fmt(selectedBF) + "%" : "—");
+      setText(
+        "selectedBfValue",
+        typeof selectedBF === "number" ? fmt(selectedBF) + "%" : "—",
+      );
       if (typeof selectedBF === "number") {
         setText("selectedBfStatus", "Đã chọn làm đầu vào Katch–McArdle");
-        setText("selectedBfDetails", document.querySelector('input[name="bfSource"]:checked').value === "manual"
-          ? "Giá trị được nhập trực tiếp."
-          : "Dữ liệu được lấy từ tab Chỉ số cơ thể.");
+        setText(
+          "selectedBfDetails",
+          document.querySelector('input[name="bfSource"]:checked').value ===
+            "manual"
+            ? "Giá trị được nhập trực tiếp."
+            : "Dữ liệu được lấy từ tab Chỉ số cơ thể.",
+        );
       } else {
-        setText("selectedBfStatus", selectedBF?.error || (document.querySelector('input[name="bfSource"]:checked').value === "manual"
-          ? "Nhập % mỡ ở ô bên dưới"
-          : "Chưa đủ số đo ở tab Chỉ số cơ thể"));
-        setText("selectedBfDetails", document.querySelector('input[name="bfSource"]:checked').value === "navy"
-          ? (sex() === "f" ? "Cần vòng cổ, vòng eo và vòng mông." : "Cần vòng cổ và vòng eo.")
-          : document.querySelector('input[name="bfSource"]:checked').value === "jp"
-            ? "Cần đủ 3 số đo kẹp mỡ ở tab Chỉ số cơ thể."
-            : "Nhập giá trị trong khoảng 2–70%.");
+        setText(
+          "selectedBfStatus",
+          selectedBF?.error ||
+            (document.querySelector('input[name="bfSource"]:checked').value ===
+            "manual"
+              ? "Nhập % mỡ ở ô bên dưới"
+              : "Chưa đủ số đo ở tab Chỉ số cơ thể"),
+        );
+        setText(
+          "selectedBfDetails",
+          document.querySelector('input[name="bfSource"]:checked').value ===
+            "navy"
+            ? sex() === "f"
+              ? "Cần vòng cổ, vòng eo và vòng mông."
+              : "Cần vòng cổ và vòng eo."
+            : document.querySelector('input[name="bfSource"]:checked').value ===
+                "jp"
+              ? "Cần đủ 3 số đo kẹp mỡ ở tab Chỉ số cơ thể."
+              : "Nhập giá trị trong khoảng 2–70%.",
+        );
       }
     } else {
       setText("selectedBfValue", "—");
       setText("selectedBfStatus", "Chỉ dùng khi chọn Katch–McArdle");
-      setText("selectedBfDetails", "Chuyển công thức BMR sang Katch–McArdle để chọn nguồn % mỡ.");
+      setText(
+        "selectedBfDetails",
+        "Chuyển công thức BMR sang Katch–McArdle để chọn nguồn % mỡ.",
+      );
     }
     setText("bmiValue", fmt(bmi));
     setText("bmiLarge", fmt(bmi));
@@ -371,7 +406,8 @@
       true;
     $("act").value = "1.375";
     $("bmrf").value = "mifflin";
-    document.querySelector('input[name="bfSource"][value="navy"]').checked = true;
+    document.querySelector('input[name="bfSource"][value="navy"]').checked =
+      true;
     updateUnitLabels();
     updateResults(false);
     showToast("Đã xóa dữ liệu nhập.");
@@ -415,8 +451,21 @@
   all("input,select").forEach((el) =>
     el.addEventListener("input", () => updateResults(false)),
   );
- 
+
   $("resetBtn").addEventListener("click", resetAll);
+
+  const themeToggle = $("themeToggle");
+
+  themeToggle.addEventListener("click", () => {
+    const currentTheme = document.documentElement.getAttribute("data-theme");
+
+    const nextTheme = currentTheme === "light" ? "dark" : "light";
+
+    document.documentElement.setAttribute("data-theme", nextTheme);
+
+    themeToggle.textContent = nextTheme === "light" ? "☾" : "☀";
+  });
+
   all(".tab").forEach((tab) =>
     tab.addEventListener("click", () => {
       all(".tab").forEach((t) => t.classList.toggle("active", t === tab));

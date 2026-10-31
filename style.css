@@ -9,7 +9,21 @@
   --cyan: #55d9e8;
   --orange: #ffb36c;
   --green: #73e5bb;
+  --input-bg: #0d0f19;
   --radius: 22px;
+}
+[data-theme="light"] {
+  --bg: #f4f5fa;
+  --panel: #ffffff;
+  --panel2: #eef0f7;
+  --line: #e5e7f0;
+  --text: #202236;
+  --muted: #747b91;
+  --purple: #7657e8;
+  --cyan: #159eaf;
+  --orange: #d98236;
+  --green: #15966b;
+  --input-bg: #f7f8fc;
 }
 * {
   box-sizing: border-box;
@@ -500,8 +514,8 @@ button {
   padding: 0 11px;
   border: 1px solid #ffffff12;
   border-radius: 10px;
-  background: #0d0f19;
-  color: #f1f1ff;
+  background: var(--input-bg);
+  color: var(--text);
   outline: none;
   font-size: 12px;
   transition:
@@ -618,7 +632,7 @@ button {
   padding: 17px 16px 14px;
   border: 1px solid var(--line);
   border-radius: 18px;
-  background: linear-gradient(145deg, #171a2b, #121421);
+  background: linear-gradient(145deg, var(--panel2), var(--panel));
   position: relative;
   overflow: hidden;
 }
@@ -1405,7 +1419,6 @@ footer {
   }
 }
 
-
 /* Katch–McArdle body-fat source selector */
 .katch-source-panel {
   margin-top: 18px;
@@ -1442,7 +1455,10 @@ footer {
   border-radius: 12px;
   background: #ffffff03;
   cursor: pointer;
-  transition: border-color .2s, background .2s, box-shadow .2s;
+  transition:
+    border-color 0.2s,
+    background 0.2s,
+    box-shadow 0.2s;
 }
 .bf-source-option:hover {
   border-color: #9a7bff75;
@@ -1450,7 +1466,9 @@ footer {
 .bf-source-option.active {
   border-color: #9a7bff;
   background: #9a7bff12;
-  box-shadow: 0 0 0 1px #9a7bff25, 0 0 20px #9a7bff12;
+  box-shadow:
+    0 0 0 1px #9a7bff25,
+    0 0 20px #9a7bff12;
 }
 .bf-source-option input {
   position: absolute;
@@ -1489,7 +1507,7 @@ footer {
 }
 .selected-bf-result {
   display: grid;
-  grid-template-columns: minmax(140px, .7fr) minmax(0, 1fr);
+  grid-template-columns: minmax(140px, 0.7fr) minmax(0, 1fr);
   align-items: center;
   gap: 16px;
   margin-top: 14px;
